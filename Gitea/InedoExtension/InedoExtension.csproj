@@ -6,7 +6,7 @@
     <RootNamespace>Inedo.Extensions.Gitea</RootNamespace>
     <AssemblyName>Gitea</AssemblyName>
     <LangVersion>latest</LangVersion>
-    <Version>2.2.0</Version>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Inedo.SDK" Version="2.2.3" ExcludeAssets="runtime" />
