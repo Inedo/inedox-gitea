@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Inedo.Extensions.Gitea</RootNamespace>
+    <AssemblyName>Gitea</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <Version>2.2.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Inedo.SDK" Version="2.2.3" ExcludeAssets="runtime" />
+  </ItemGroup>
+</Project>
