@@ -9,8 +9,9 @@ namespace Inedo.Extensions.Gitea;
 public sealed class GiteaServiceInfo : GitService<GiteaRepository, GiteaAccount>
 {
     public override string ServiceName => "Gitea";
-    public override bool HasDefaultApiUrl => true;
+    public override bool HasDefaultApiUrl => false;
     public override string PasswordDisplayName => "Personal access token";
+    public override string ApiUrlPlaceholderText => "e.g. https://git.mycorp.local/api/v1/";
 
     public override IAsyncEnumerable<string> GetNamespacesAsync(GitServiceCredentials credentials, CancellationToken cancellationToken = default)
     {
