@@ -37,7 +37,7 @@ internal abstract class GiteaSuggestionProvider : ISuggestionProvider
 
         var resourceName = config["ResourceName"];
         if (!string.IsNullOrEmpty(resourceName))
-            this.Resource = SecureResource.TryCreate(resourceName, context) as GiteaRepository;
+            this.Resource = SecureResource.TryCreate(SecureResourceType.GitRepository, resourceName, context) as GiteaRepository;
 
         if (this.Credentials == null && this.Resource != null)
             this.Credentials = this.Resource.GetCredentials(context) as GiteaAccount;
