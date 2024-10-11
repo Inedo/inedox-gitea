@@ -13,9 +13,7 @@ internal sealed class GiteaClient : ILogSink
 {
     private readonly HttpClient httpClient;
     private readonly ILogSink? log;
-    void ILogSink.Log(IMessage message) => this.log?.Log(message);
-
-    public GiteaClient(string baseUrl, string? token, ILogSink? log = null)
+    public GiteaClient(string baseUrl, string? token, ILogSink? log = null, bool ignoreCertErrors = false)
     {
         if (string.IsNullOrEmpty(baseUrl))
             throw new ArgumentNullException(nameof(baseUrl));
@@ -31,7 +29,7 @@ internal sealed class GiteaClient : ILogSink
 
         this.log = log;
 
-        this.httpClient = SDK.CreateHttpClient();
+        this.httpClient = SDK.CreateHttpClient(new HttpClientCreationOptions { IgnoreServerCertificateErrors = ignoreCertErrors });
         this.httpClient.BaseAddress = uri;
         this.httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         if (!string.IsNullOrWhiteSpace(token))
@@ -201,7 +199,7 @@ internal sealed class GiteaClient : ILogSink
         response.EnsureSuccessStatusCode();
     }
 
-    private static HttpContent GetMilestoneJson(string title, string? state = null, long? id = null)
+    private static StringContent GetMilestoneJson(string title, string? state = null, long? id = null)
     {
         var obj = new JsonObject { ["title"] = title };
         if (!string.IsNullOrEmpty(state))
@@ -211,4 +209,6 @@ internal sealed class GiteaClient : ILogSink
 
         return new StringContent(obj.ToJsonString(), InedoLib.UTF8Encoding, "application/json");
     }
+
+    void ILogSink.Log(IMessage message) => this.log?.Log(message);
 }

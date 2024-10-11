@@ -53,7 +53,8 @@ internal abstract class GiteaSuggestionProvider : ISuggestionProvider
             this.Credentials.ServiceUrl,
             string.IsNullOrEmpty(config["Password"])
                 ? AH.Unprotect(this.Credentials.Password)
-                : config["Password"]
+                : config["Password"],
+            ignoreCertErrors: this.Credentials.IgnoreCertificateCheck
         );
 
         var suggestions = this.GetSuggestionsAsync(cancellationToken);

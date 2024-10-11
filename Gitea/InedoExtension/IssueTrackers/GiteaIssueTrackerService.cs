@@ -30,7 +30,7 @@ public class GiteaIssueTrackerService : IssueTrackerService<GiteaIssueTrackerPro
         if (string.IsNullOrWhiteSpace(credentials.ServiceUrl))
             throw new InvalidOperationException("Gitea requires a service url.");
 
-        return new GiteaClient(credentials.ServiceUrl, AH.Unprotect(credentials.Password));
+        return new GiteaClient(credentials.ServiceUrl, AH.Unprotect(credentials.Password), ignoreCertErrors: credentials.IgnoreCertificateCheck);
     }
 
 }

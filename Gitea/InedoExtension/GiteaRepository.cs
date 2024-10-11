@@ -89,6 +89,6 @@ public sealed class GiteaRepository : GitServiceRepository<GiteaAccount>
         if (string.IsNullOrWhiteSpace(account.ServiceUrl))
             throw new InvalidOperationException("Gitea requires a service url.");
 
-        return new GiteaClient(account.ServiceUrl, AH.Unprotect(account.Password));
+        return new GiteaClient(account.ServiceUrl, AH.Unprotect(account.Password), ignoreCertErrors: account.IgnoreCertificateCheck);
     }
 }

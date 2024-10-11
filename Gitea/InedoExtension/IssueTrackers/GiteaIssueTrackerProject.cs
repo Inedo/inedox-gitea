@@ -102,6 +102,6 @@ public sealed class GiteaIssueTrackerProject : IssueTrackerProject<GiteaAccount>
         if (creds.ServiceUrl == null)
             throw new InvalidOperationException("serviceUrl is required to query Gitea API.");
 
-        return new GiteaClient(creds.ServiceUrl!, AH.Unprotect(creds.Password), this);
+        return new GiteaClient(creds.ServiceUrl!, AH.Unprotect(creds.Password), this, ignoreCertErrors: creds.IgnoreCertificateCheck);
     }
 }
