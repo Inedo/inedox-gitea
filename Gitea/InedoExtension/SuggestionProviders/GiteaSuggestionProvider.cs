@@ -18,14 +18,6 @@ internal abstract class GiteaSuggestionProvider : ISuggestionProvider
     public IComponentConfiguration? ComponentConfiguration { get; private set; }
     public GiteaClient? Client { get; private set; }
 
-    public async Task<IEnumerable<string>> GetSuggestionsAsync(IComponentConfiguration config)
-    {
-        var list = new List<string>();
-        await foreach (var s in this.GetSuggestionsAsync(string.Empty, config, default).ConfigureAwait(false))
-            list.Add(s);
-        return list;
-    }
-
     public async IAsyncEnumerable<string> GetSuggestionsAsync(string startsWith, IComponentConfiguration config, [EnumeratorCancellation] CancellationToken cancellationToken)
     {
         var context = new CredentialResolutionContext((config.EditorContext as ICredentialResolutionContext)?.ApplicationId, null);
@@ -66,6 +58,11 @@ internal abstract class GiteaSuggestionProvider : ISuggestionProvider
                     yield return s;
             }
         }
+    }
+
+    public IAsyncEnumerable<string> GetSuggestionsAsync(IComponentConfiguration config, CancellationToken cancellationToken)
+    {
+        return this.GetSuggestionsAsync(string.Empty, config, cancellationToken);
     }
 
     protected abstract IAsyncEnumerable<string>? GetSuggestionsAsync(CancellationToken cancellationToken);
