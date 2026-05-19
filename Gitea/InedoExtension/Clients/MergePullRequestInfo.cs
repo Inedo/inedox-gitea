@@ -2,19 +2,13 @@
 
 namespace Inedo.Extensions.Gitea.Clients;
 
-internal sealed class MergePullRequestInfo
+internal sealed class MergePullRequestInfo(string @do, string? mergeMessageField, string? mergeTitleField, string? headCommitId)
 {
-    public MergePullRequestInfo(string @do, string? mergeMessageField, string? mergeTitleField, string? headCommitId)
-    {
-        this.Do = @do;
-        this.MergeMessageField = mergeMessageField;
-        this.MergeTitleField = mergeTitleField;
-        this.HeadCommitId = headCommitId;
-    }
-
-    public string Do { get; }
-    public string? MergeMessageField { get; }
-    public string? MergeTitleField { get; }
-    [JsonPropertyName("head_commit_id")]
-    public string? HeadCommitId { get; }
+    [JsonPropertyName(nameof(Do))]
+    public string Do { get; } = @do;
+    [JsonPropertyName(nameof(MergeMessageField))]
+    public string? MergeMessageField { get; } = mergeMessageField;
+    [JsonPropertyName(nameof(MergeTitleField))]
+    public string? MergeTitleField { get; } = mergeTitleField;
+    public string? HeadCommitId { get; } = headCommitId;
 }

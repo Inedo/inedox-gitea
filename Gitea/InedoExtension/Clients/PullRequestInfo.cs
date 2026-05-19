@@ -2,23 +2,13 @@
 
 namespace Inedo.Extensions.Gitea.Clients;
 
-internal sealed class PullRequestInfo
+[method: JsonConstructor]
+internal sealed class PullRequestInfo(long id, string url, string title, PullRequestBaseInfo @base, PullRequestBaseInfo head, string state)
 {
-    [JsonConstructor]
-    public PullRequestInfo(long id, string url, string title, PullRequestBaseInfo @base, PullRequestBaseInfo head, string state)
-    {
-        this.Id = id;
-        this.Url = url;
-        this.Title = title;
-        this.Base = @base;
-        this.Head = head;
-        this.State = state;
-    }
-
-    public long Id { get; }
-    public string Url { get; }
-    public string Title { get; }
-    public PullRequestBaseInfo Base { get; }
-    public PullRequestBaseInfo Head { get; }
-    public string State { get; }
+    public long Id { get; } = id;
+    public string Url { get; } = url;
+    public string Title { get; } = title;
+    public PullRequestBaseInfo Base { get; } = @base;
+    public PullRequestBaseInfo Head { get; } = head;
+    public string State { get; } = state;
 }

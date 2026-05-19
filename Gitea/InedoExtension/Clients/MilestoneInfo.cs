@@ -2,19 +2,12 @@
 
 namespace Inedo.Extensions.Gitea.Clients;
 
-internal sealed class MilestoneInfo
+[method: JsonConstructor]
+internal sealed class MilestoneInfo(long id, string title, string state)
 {
-    [JsonConstructor]
-    public MilestoneInfo(long id, string title, string state)
-    {
-        this.Id = id;
-        this.Title = title;
-        this.State = state;
-    }
-
-    public long Id { get; }
-    public string Title { get; }
-    public string State { get; }
+    public long Id { get; } = id;
+    public string Title { get; } = title;
+    public string State { get; } = state;
 
     [JsonIgnore]
     public bool Closed => string.Equals(this.State, "closed", StringComparison.OrdinalIgnoreCase);

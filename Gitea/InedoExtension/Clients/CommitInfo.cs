@@ -2,10 +2,8 @@
 
 namespace Inedo.Extensions.Gitea.Clients;
 
-internal sealed class CommitInfo
+[method: JsonConstructor]
+internal sealed class CommitInfo(string id)
 {
-    [JsonConstructor]
-    public CommitInfo(string id) => this.Id = id;
-
-    public string Id { get; }
+    public string Id { get; } = id;
 }

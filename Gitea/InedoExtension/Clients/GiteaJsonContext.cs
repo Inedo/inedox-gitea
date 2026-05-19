@@ -8,7 +8,7 @@ namespace Inedo.Extensions.Gitea.Clients;
 [JsonSerializable(typeof(OrganizationOrRepoInfo[]))]
 [JsonSerializable(typeof(IssueInfo[]))]
 [JsonSerializable(typeof(MilestoneInfo[]))]
-[JsonSourceGenerationOptions(GenerationMode = JsonSourceGenerationMode.Metadata, PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+[JsonSourceGenerationOptions(GenerationMode = JsonSourceGenerationMode.Metadata, PropertyNamingPolicy = JsonKnownNamingPolicy.SnakeCaseLower)]
 internal sealed partial class GiteaJsonContext : JsonSerializerContext
 {
 }

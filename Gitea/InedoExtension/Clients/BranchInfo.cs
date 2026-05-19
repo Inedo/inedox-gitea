@@ -2,17 +2,10 @@
 
 namespace Inedo.Extensions.Gitea.Clients;
 
-internal sealed class BranchInfo
+[method: JsonConstructor]
+internal sealed class BranchInfo(string name, CommitInfo commit, bool @protected)
 {
-    [JsonConstructor]
-    public BranchInfo(string name, CommitInfo commit, bool @protected)
-    {
-        this.Name = name;
-        this.Commit = commit;
-        this.Protected = @protected;
-    }
-
-    public string Name { get; }
-    public CommitInfo Commit { get; }
-    public bool Protected { get; }
+    public string Name { get; } = name;
+    public CommitInfo Commit { get; } = commit;
+    public bool Protected { get; } = @protected;
 }

@@ -1,15 +1,8 @@
 ﻿namespace Inedo.Extensions.Gitea.Clients;
 
-internal sealed class CreateStatusOption
+internal sealed class CreateStatusOption(string? context, string? description, string state)
 {
-    public CreateStatusOption(string? context, string? description, string state)
-    {
-        this.Context = context;
-        this.Description = description;
-        this.State = state;
-    }
-
-    public string? Context { get; }
-    public string? Description { get; }
-    public string State { get; }
+    public string? Context { get; } = context;
+    public string? Description { get; } = description;
+    public string State { get; } = state;
 }

@@ -2,10 +2,8 @@
 
 namespace Inedo.Extensions.Gitea.Clients;
 
-internal sealed class LabelInfo
+[method: JsonConstructor]
+internal sealed class LabelInfo(string name)
 {
-    [JsonConstructor]
-    public LabelInfo(string name) => this.Name = name;
-
-    public string Name { get; }
+    public string Name { get; } = name;
 }

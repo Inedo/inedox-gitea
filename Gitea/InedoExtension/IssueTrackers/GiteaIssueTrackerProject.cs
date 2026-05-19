@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Frozen;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Inedo.Documentation;
 using Inedo.ExecutionEngine.Variables;
@@ -13,7 +14,7 @@ namespace Inedo.Extensions.Gitea.IssueTrackers;
 [Description("Work with issues on a Gitea Repository.")]
 public sealed class GiteaIssueTrackerProject : IssueTrackerProject<GiteaAccount>
 {
-    private static readonly HashSet<string> validStates = new(StringComparer.OrdinalIgnoreCase) { "Open", "Closed" };
+    private static readonly FrozenSet<string> validStates = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "Open", "Closed" }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     [Persistent]
     [DisplayName("Labels")]
