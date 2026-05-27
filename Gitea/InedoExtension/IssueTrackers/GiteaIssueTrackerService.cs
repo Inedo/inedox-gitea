@@ -15,7 +15,6 @@ public class GiteaIssueTrackerService : IssueTrackerService<GiteaIssueTrackerPro
     public override string PasswordDisplayName => "Personal access token";
     public override string ApiUrlPlaceholderText => "e.g. https://git.mycorp.local/api/v1/";
 
-
     protected override IAsyncEnumerable<string> GetNamespacesAsync(GiteaAccount credentials, CancellationToken cancellationToken = default)
     {
         return GetClient(credentials).GetOrganizationsAsync(cancellationToken);
@@ -32,5 +31,4 @@ public class GiteaIssueTrackerService : IssueTrackerService<GiteaIssueTrackerPro
 
         return new GiteaClient(credentials.ServiceUrl, AH.Unprotect(credentials.Password), ignoreCertErrors: credentials.IgnoreCertificateCheck);
     }
-
 }

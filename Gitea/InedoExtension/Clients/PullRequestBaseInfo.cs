@@ -2,10 +2,8 @@
 
 namespace Inedo.Extensions.Gitea.Clients;
 
-internal sealed class PullRequestBaseInfo
+[method: JsonConstructor]
+internal sealed class PullRequestBaseInfo(string @ref)
 {
-    [JsonConstructor]
-    public PullRequestBaseInfo(string @ref) => this.Ref = @ref;
-
-    public string Ref { get; }
+    public string Ref { get; } = @ref;
 }

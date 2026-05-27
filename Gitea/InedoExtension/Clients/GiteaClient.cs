@@ -13,13 +13,12 @@ internal sealed class GiteaClient : ILogSink
 {
     private readonly HttpClient httpClient;
     private readonly ILogSink? log;
+
     public GiteaClient(string baseUrl, string? token, ILogSink? log = null, bool ignoreCertErrors = false)
     {
-        if (string.IsNullOrEmpty(baseUrl))
-            throw new ArgumentNullException(nameof(baseUrl));
+        ArgumentException.ThrowIfNullOrEmpty(baseUrl);
 
         Uri uri;
-
         if (baseUrl.EndsWith("/api/v1"))
             uri = new Uri(baseUrl + "/");
         else if (baseUrl.EndsWith("/api/v1/"))

@@ -3,22 +3,12 @@ using Inedo.Extensibility.Git;
 
 namespace Inedo.Extensions.Gitea.Clients;
 
-internal sealed class RepositoryInfo : IGitRepositoryInfo
+[method: JsonConstructor]
+internal sealed class RepositoryInfo(string cloneUrl, string htmlUrl, string defaultBranch) : IGitRepositoryInfo
 {
-    [JsonConstructor]
-    public RepositoryInfo(string cloneUrl, string htmlUrl, string defaultBranch)
-    {
-        this.CloneUrl = cloneUrl;
-        this.HtmlUrl = htmlUrl;
-        this.DefaultBranch = defaultBranch;
-    }
-
-    [JsonPropertyName("clone_url")]
-    public string CloneUrl { get; }
-    [JsonPropertyName("html_url")]
-    public string HtmlUrl { get; }
-    [JsonPropertyName("default_branch")]
-    public string DefaultBranch { get; }
+    public string CloneUrl { get; } = cloneUrl;
+    public string HtmlUrl { get; } = htmlUrl;
+    public string DefaultBranch { get; } = defaultBranch;
 
     string IGitRepositoryInfo.RepositoryUrl => this.CloneUrl;
     string? IGitRepositoryInfo.BrowseUrl => this.HtmlUrl;

@@ -2,10 +2,8 @@
 
 namespace Inedo.Extensions.Gitea.Clients;
 
-internal sealed class OrganizationOrRepoInfo
+[method: JsonConstructor]
+internal sealed class OrganizationOrRepoInfo(string name)
 {
-    [JsonConstructor]
-    public OrganizationOrRepoInfo(string name) => this.Name = name;
-
-    public string Name { get; }
+    public string Name { get; } = name;
 }

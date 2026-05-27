@@ -2,10 +2,8 @@
 
 namespace Inedo.Extensions.Gitea.Clients;
 
-internal sealed class UserInfo
+[method: JsonConstructor]
+internal sealed class UserInfo(string login)
 {
-    [JsonConstructor]
-    public UserInfo(string login) => this.Login = login;
-
-    public string Login { get; }
+    public string Login { get; } = login;
 }
